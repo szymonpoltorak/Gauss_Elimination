@@ -1,5 +1,20 @@
-all:
-	gcc -Wall --pedantic src/*.c -o bin/gauss
+FLAGS = -Wall -pedantic -Wextra
+CCO = cc -c
 
-test: all
-	bin/gauss dane/A dane/b
+matrix: main.o gauss.o backsubst.o mat_io.o
+	$(CC) $^ -o $@
+	mv *.o *.gch bin/
+
+main.o: src/main.c src/gauss.h src/backsubst.h src/mat_io.h
+	$(CCO) $^ $(FLAGS)
+
+gauss.o: src/gauss.c src/gauss.h src/mat_io.h
+	$(CCO) $^ $(FLAGS)
+
+backsubst.o: src/backsubst.c src/backsubst.h
+	$(CCO) $^ $(FLAGS)
+
+mat_io.o: src/mat_io.c src/mat_io.h 
+	$(CCO) $^ $(FLAGS)
+clean:
+	rm bin/*.o bin/*.gch matrix 
