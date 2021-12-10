@@ -3,7 +3,7 @@ CCO = cc -c
 
 matrix: main.o gauss.o backsubst.o mat_io.o
 	$(CC) $^ -o $@
-	mv *.o *.gch bin/
+	mv *.o src/*.gch bin/
 
 main.o: src/main.c src/gauss.h src/backsubst.h src/mat_io.h
 	$(CCO) $^ $(FLAGS)
