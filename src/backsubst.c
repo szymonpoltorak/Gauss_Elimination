@@ -6,7 +6,7 @@
  */
 int backsubst(Matrix *x, Matrix *mat, Matrix *b) {
 	int n = mat->r-1;
-	float sum = 0.0;
+	double sum = 0.0;
 	x->data[n][0] = b->data[n][0] / mat->data[n][n];
 	for(int i = n - 1; i >= 0; i--){
 		sum = 0;
