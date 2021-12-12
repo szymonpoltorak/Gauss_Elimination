@@ -3,25 +3,20 @@
 
 #include "mat_io.h"
 
-/**
- * Zwraca 0 - elimnacja zakonczona sukcesem
- * Zwraca 1 - macierz osobliwa - dzielenie przez 0
- */
+void swap(Matrix *mat, Matrix *b, int p); // zamien wiersze
 
-void swap(Matrix *mat, Matrix *b, int p);
+void find_swap(Matrix *mat, Matrix *b, int k); //znajdz wiersze do zamiany
 
-void find_swap(Matrix *mat, Matrix *b, int k);
+double det(Matrix *mat); // policz wyznacznik macierzy
 
-double det(Matrix *mat);
+double count_second_det(Matrix *mat); //oblicz wyznacznik 2 stopnia
 
-double count_second_det(Matrix *mat);
+double count_k(Matrix *mat, int i, int j); //wyznacz wspolczynnik k
 
-double count_k(Matrix *mat, int i, int j);
+double count_data_mat(Matrix *mat, int i, int j, int um, double k); // wyznacza wartość w indexie w tablicy data dla mat
 
-double count_data_mat(Matrix *mat, int i, int j, int um, double k);
+double count_data_b(Matrix *b, int i, int j, double k); //wyznacz wartość indexie w tablicy data w macierzy b
 
-double count_data_b(Matrix *b, int i, int j, double k);
-
-int eliminate(Matrix *mat, Matrix *b);
+void eliminate(Matrix *mat, Matrix *b); //wykonaj eliminacje gausa
 
 #endif

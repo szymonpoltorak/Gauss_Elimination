@@ -36,12 +36,12 @@ int main(int argc, char ** argv) {
 	printf("Macierz wynikow rownan:\n");
 	printToScreen(b);
 
-	int res = eliminate(A,b);
+	eliminate(A,b);
 
 	x = createMatrix(b->r, 1);
 
 	if (x != NULL) {
-		res = backsubst(x,A,b);
+		backsubst(x,A,b);
 		printf("Macierz schodkowa:\n");
 		printToScreen(A);
 		printf("Macierz rozwiazan ukladu rownan:\n");

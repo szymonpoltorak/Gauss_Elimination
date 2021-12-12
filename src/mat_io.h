@@ -11,10 +11,10 @@ typedef struct _Matrix {
  * Zwraca 1 - podczas wczytywania wystapil blad
  */
 
-Matrix * readFromFile(char * fname);
-void printToScreen(Matrix *mat);
+Matrix * readFromFile(char * fname); //przeczytaj dane z pliku
+void printToScreen(Matrix *mat); //wyswietl macierz
 
-Matrix * createMatrix(int r, int c);
-void freeMatrix(Matrix *mat);
+Matrix * createMatrix(int r, int c); //stworz macierz
+void freeMatrix(Matrix *mat); //zwolnij pamięć zajmowaną przez macierz
 
 #endif

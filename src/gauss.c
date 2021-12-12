@@ -1,10 +1,6 @@
 #include "gauss.h"
 #include <stdio.h>
 #include <stdlib.h>
-/**
- * Zwraca 0 - elimnacja zakonczona sukcesem
- * Zwraca 1 - macierz osobliwa - dzielenie przez 0
- */
 
 double count_k(Matrix *mat, int i, int j) {
 	return (mat -> data[j][i]/mat->data[i][i]);
@@ -95,7 +91,7 @@ double det(Matrix *mat){
 	}
 }
 
-int eliminate(Matrix *mat, Matrix *b){
+void eliminate(Matrix *mat, Matrix *b){
 	if (det(mat) != 0){
 		for (int i = 0; i < mat -> r ; i++){
 			for (int j = i + 1; j < mat -> c; j++){
@@ -127,6 +123,4 @@ int eliminate(Matrix *mat, Matrix *b){
 		freeMatrix(b);
 		exit(EXIT_FAILURE);
 	}
-
-	return EXIT_SUCCESS;
 }
