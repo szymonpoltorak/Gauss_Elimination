@@ -9,7 +9,7 @@ main.o: src/main.c src/gauss.h src/backsubst.h src/mat_io.h
 	$(CCO) $^ $(FLAGS)
 
 gauss.o: src/gauss.c src/gauss.h src/mat_io.h
-	$(CCO) $^ $(FLAGS)
+	$(CCO) $^ $(FLAGS) -lm
 
 backsubst.o: src/backsubst.c src/backsubst.h
 	$(CCO) $^ $(FLAGS)

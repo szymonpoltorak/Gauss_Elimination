@@ -1,6 +1,7 @@
 #include "gauss.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 double count_k(Matrix *mat, int i, int j) {
 	return (mat -> data[j][i]/mat->data[i][i]);
@@ -90,10 +91,35 @@ double det(Matrix *mat){
 		return sum;
 	}
 }
+void swap_rows (Matrix *matrix, int first, int second){
+	double tmp;
+	for (int i = 0; i < matrix->c; i++){
+		tmp = matrix->data[first][i];
+		matrix->data[first][i] = matrix->data[second][i];
+		matrix->data[second][i] = tmp;
+	}
+}
+void sort_for_max_element(Matrix *mat, Matrix *b, int current_ID){
+	int biggestline = -1;
+	//szukanie numeru wiersza w ktorym wspolczynnik mat[n][n] jest najwiekszy.
+	biggestline = current_ID;
+	for (int i = current_ID + 1; i < mat->r; i++){
+		if(mat->data[i][current_ID] > mat->data[current_ID][current_ID]){
+			if(mat->data[i][current_ID] > mat->data[biggestline][current_ID] && (fabs(mat->data[biggestline][current_ID]) > 0.0001)){
+				biggestline = i;
+			}
+		}
+	}
+	//zamiana wiersza obecengo (current_ID) z najwiekszym (biggestline)
+	swap_rows(mat, current_ID, biggestline);
+	swap_rows(b, current_ID, biggestline);
+
+}
 
 void eliminate(Matrix *mat, Matrix *b){
 	if (det(mat) != 0){
 		for (int i = 0; i < mat -> r ; i++){
+			sort_for_max_element(mat, b, i);
 			for (int j = i + 1; j < mat -> c; j++){
 				if (mat -> data[mat -> r - 1][mat -> c - 1] != 0){
 					if (mat -> data[i][i] != 0){
