@@ -105,7 +105,7 @@ void sort_for_max_element(Matrix *mat, Matrix *b, int current_ID){
 	biggestline = current_ID;
 	for (int i = current_ID + 1; i < mat->r; i++){
 		if(mat->data[i][current_ID] > mat->data[current_ID][current_ID]){
-			if(mat->data[i][current_ID] > mat->data[biggestline][current_ID] && (fabs(mat->data[biggestline][current_ID]) > 0.0001)){
+			if(fabs(mat->data[i][current_ID]) > fabs(mat->data[biggestline][current_ID]) && (fabs(mat->data[biggestline][current_ID]) > 0.0001)){
 				biggestline = i;
 			}
 		}
