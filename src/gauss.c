@@ -123,27 +123,18 @@ void eliminate(Matrix *mat, Matrix *b, int use_max){
 				sort_for_max_element(mat, b, i);
 			}
 			for (int j = i + 1; j < mat -> c; j++){
-				if (mat -> data[mat -> r - 1][mat -> c - 1] != 0){
-					if (mat -> data[i][i] != 0){
-						double k = count_k(mat, i, j);
-						b -> data[j][0] = count_data_b(b, i, j, k);
-
-						for (int um = i; um < mat -> r; um++){
-							mat -> data[j][um] = count_data_mat(mat, i, j, um, k);
-						}
-					}
-					else { //zamiana wierszy
-						find_swap(mat, b, i);
+				if (mat -> data[i][i] != 0){
+					double k = count_k(mat, i, j);
+					b -> data[j][0] = count_data_b(b, i, j, k);
+					for (int um = i; um < mat -> r; um++){
+						mat -> data[j][um] = count_data_mat(mat, i, j, um, k);
 					}
 				}
-				else{
-					fprintf(stderr, "Wspolczynnik ann jest rowny 0. Uklad nie posiada jednoznacznego rozwiazania. Program zakonczy dzialanie.\n");
-					freeMatrix(mat);
-					freeMatrix(b);
-					exit(EXIT_FAILURE);
+				else { //zamiana wierszy
+					find_swap(mat, b, i);
 				}
 			}
-		}		
+		}
 	}
 	else{
 		fprintf(stderr, "Macierz jest osobliwa, nie mozna wyzynaczyc rozwiazan. Program zakonczy dzialanie.\n");
