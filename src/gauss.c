@@ -116,10 +116,12 @@ void sort_for_max_element(Matrix *mat, Matrix *b, int current_ID){
 
 }
 
-void eliminate(Matrix *mat, Matrix *b){
+void eliminate(Matrix *mat, Matrix *b, int use_max){
 	if (det(mat) != 0){
 		for (int i = 0; i < mat -> r ; i++){
-			sort_for_max_element(mat, b, i);
+			if( use_max ){
+				sort_for_max_element(mat, b, i);
+			}
 			for (int j = i + 1; j < mat -> c; j++){
 				if (mat -> data[mat -> r - 1][mat -> c - 1] != 0){
 					if (mat -> data[i][i] != 0){

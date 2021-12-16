@@ -3,6 +3,7 @@
 #include "mat_io.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 
 int main(int argc, char ** argv) {
@@ -13,6 +14,11 @@ int main(int argc, char ** argv) {
 	else if (argc < 3) {
 		fprintf(stderr, "Nie podano macierzy wynikow rownan. Program zakonczy dzialanie.\n");
 		exit(EXIT_FAILURE);
+	}
+	int use_max = 0;
+	if(argc > 3 && (strcmp(argv[3],"-USE_MAX") == 0)){
+		use_max = 1;
+		printf("Użyto najwiekszego elementu w eliminacji gaussa\n");
 	}
 
 	Matrix * A = readFromFile(argv[1]);
@@ -36,7 +42,7 @@ int main(int argc, char ** argv) {
 	printf("Macierz wynikow rownan:\n");
 	printToScreen(b);
 
-	eliminate(A,b);
+	eliminate(A,b, use_max);
 
 	x = createMatrix(b->r, 1);
 

@@ -21,6 +21,6 @@ void swap_rows (Matrix *matrix, int first, int second); //zamienia wiersze first
 
 void sort_for_max_element(Matrix *mat, Matrix *b, int current_ID); //ustawia najwiekszy element na A[i][i]
 
-void eliminate(Matrix *mat, Matrix *b); //wykonaj eliminacje gausa
+void eliminate(Matrix *mat, Matrix *b, int use_max); //wykonaj eliminacje gausa
 
 #endif
