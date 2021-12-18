@@ -28,7 +28,7 @@ void swap(Matrix *mat, Matrix *b, int p){
 		for (int j = 0; j < mat -> c; j++){
 			temp = mat -> data[p][j];
 			mat -> data[p][j] = mat -> data[p+1][j];
-			mat -> data[p+1][j] = temp; 
+			mat -> data[p+1][j] = temp;
 		}
 	}
 }
@@ -63,7 +63,7 @@ double det(Matrix *mat){
 		Matrix *minor;
 		minor = createMatrix(mat -> r - 1, mat -> c - 1);
 		double sum = 0;
-		
+
 		for (int i = 0; i < mat -> r; i++){
 				int rm = 0;
 			for (register int w = 1; w < mat -> r; w++){
@@ -104,10 +104,8 @@ void sort_for_max_element(Matrix *mat, Matrix *b, int current_ID){
 	//szukanie numeru wiersza w ktorym wspolczynnik mat[n][n] jest najwiekszy.
 	biggestline = current_ID;
 	for (int i = current_ID + 1; i < mat->r; i++){
-		if(mat->data[i][current_ID] > mat->data[current_ID][current_ID]){
-			if(fabs(mat->data[i][current_ID]) > fabs(mat->data[biggestline][current_ID]) && (fabs(mat->data[biggestline][current_ID]) > 0.0001)){
-				biggestline = i;
-			}
+		if(fabs(mat->data[i][current_ID]) > fabs(mat->data[biggestline][current_ID]) && (fabs(mat->data[i][current_ID]) > 0.0001)){
+			biggestline = i;
 		}
 	}
 	//zamiana wiersza obecengo (current_ID) z najwiekszym (biggestline)
