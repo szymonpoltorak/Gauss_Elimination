@@ -12,33 +12,41 @@ Matrix * readFromFile(char * fname) {
 	Matrix * mat = NULL;
 
 	if (fin != NULL) {
-		if (fscanf(fin,"%d %d",&r,&c) == 2 ) {		
+		if (fscanf(fin,"%d %d",&r,&c) == 2 ) {
 			mat = createMatrix(r,c);
 
 			if (mat != NULL) {
 				for (int ir = 0; ir < r; ir++) {
 					for (int ic = 0; ic < c; ic++) {
 						if (fscanf(fin, "%lf",&(mat->data[ir][ic])) != 1) {
+							#ifndef TEST
 							fprintf(stderr,"Znaleziono zly format argumentu. Program zakonczy dzialanie.\n");
-							exit(EXIT_FAILURE);
+							#endif
+							return NULL;
 						}
 					}
 				}
-			} 
+			}
 			else {
+				#ifndef TEST
 				fprintf(stderr,"Wystąpił problem podczas tworzenia macierzy o rozmiarach %d x %d dla danych z pliku: %s\n", r, c, fname);
-				exit(EXIT_FAILURE);
-			}	
+				#endif
+				return NULL;
+			}
 		}
 		else {
+			#ifndef TEST
 			fprintf(stderr,"Podano niewlasciwe argumenty w pliku\n");
-			exit(EXIT_FAILURE);
-		}	
+			#endif
+			return NULL;
+		}
 		fclose(fin);
-	} 
+	}
 	else {
+		#ifndef TEST
 		fprintf(stderr,"Nie mogę otworzyć pliku o nazwie: %s\n", fname);
-		exit(EXIT_FAILURE);
+		#endif
+		return NULL;
 	}
 
 	return mat;
@@ -74,7 +82,7 @@ Matrix * createMatrix(int r, int c) {
 void freeMatrix(Matrix * mat) {
 	for (int i = 0; i < mat->r; i++)
 		free(mat->data[i]);
-	
+
 	free(mat->data);
 	free(mat);
 }
