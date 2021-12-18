@@ -14,7 +14,12 @@ gauss.o: src/gauss.c src/gauss.h src/mat_io.h
 backsubst.o: src/backsubst.c src/backsubst.h
 	$(CCO) $^ $(FLAGS)
 
-mat_io.o: src/mat_io.c src/mat_io.h 
+mat_io.o: src/mat_io.c src/mat_io.h
 	$(CCO) $^ $(FLAGS)
+test: test_gauss.o gauss.o backsubst.o mat_io.o
+	$(CC) $^ -o $@
+	mv *.o src/*.gch bin/
+test_gauss.o: src/test_gauss.c src/gauss.h src/backsubst.h src/mat_io.h
+	$(CCO) $^ $(FLAGS) -lm
 clean:
-	rm bin/*.o bin/*.gch matrix 
+	rm bin/*.o bin/*.gch matrix
