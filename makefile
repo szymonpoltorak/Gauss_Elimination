@@ -16,10 +16,12 @@ backsubst.o: src/backsubst.c src/backsubst.h
 
 mat_io.o: src/mat_io.c src/mat_io.h
 	$(CCO) $^ $(FLAGS)
-test: test_gauss.o gauss.o backsubst.o mat_io.o
-	$(CC) $^ -o $@
+mat_io_test.o: src/mat_io.c
+	$(CCO) $^ -o $@ -DTEST
+test: test_gauss.o gauss.o backsubst.o mat_io_test.o
+	$(CC) $^ -o $@ -DTEST
 	mv *.o src/*.gch bin/
 test_gauss.o: src/test_gauss.c src/gauss.h src/backsubst.h src/mat_io.h
 	$(CCO) $^ $(FLAGS) -lm
 clean:
-	rm bin/*.o bin/*.gch matrix test
+	rm bin/*.o bin/*.gch matrix test 
