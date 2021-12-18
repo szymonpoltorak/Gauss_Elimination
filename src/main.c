@@ -25,7 +25,11 @@ int main(int argc, char ** argv) {
 	}
 
 	Matrix * A = readFromFile(argv[1]);
+	if (A == NULL)
+		return -1;
 	Matrix * b = readFromFile(argv[2]);
+	if (b == NULL)
+		return -2;
 	Matrix * x;
 
 	if ((A -> r != A -> c) || (A -> r != b -> r)){
@@ -34,11 +38,6 @@ int main(int argc, char ** argv) {
 		freeMatrix(b);
 		exit(EXIT_FAILURE);
 	}
-
-	if (A == NULL)
-		return -1;
-	if (b == NULL)
-		return -2;
 
 	printf("Macierz wspolczynnikow:\n");
 	printToScreen(A);
