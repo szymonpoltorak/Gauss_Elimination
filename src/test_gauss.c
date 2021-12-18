@@ -15,28 +15,28 @@ int test_cztery ( void );
 int main( void ) {
   //TEST1: Dwa poprawne układy równań
   if (test_jeden() == 0){
-    printf("Test 1 - POMYŚLNY!\n");
+    printf("Test 1 - testuje 2 układy poprawne - POMYŚLNY!\n");
   } else {
-    printf("Test 1 - BłĄD!\n");
+    printf("Test 1 - testuje 2 układy poprawne - BłĄD!\n");
   }
 
   //TEST2: Zero na pierwszym miejscu
   if (test_dwa() == 0){
-    printf("Test 2 - POMYŚLNY!\n");
+    printf("Test 2 - testuje gdy A[1][1] równe zero - POMYŚLNY!\n");
   } else {
-    printf("Test 2 - BłĄD!\n");
+    printf("Test 2 - testuje gdy A[1][1] równe zero - BłĄD!\n");
   }
 
   //TEST3: Wyznacznik zerowy
   if (test_trzy() == 0){
-    printf("Test 3 - POMYŚLNY!\n");
+    printf("Test 3 - testuje przypadek z macirzą osobliwą - POMYŚLNY!\n");
   } else {
-    printf("Test 3 - BłĄD!\n");
+    printf("Test 3 - testuje przypadek z macirzą osobliwą - BłĄD!\n");
   }
   if (test_cztery() == 0){
-    printf("Test 4 - POMYŚLNY!\n");
+    printf("Test 4 - testuje przypadek z niepoprawnymi danymi - POMYŚLNY!\n");
   } else {
-    printf("Test 4 - BłĄD!\n");
+    printf("Test 4 - testuje przypadek z niepoprawnymi danymi - BłĄD!\n");
   }
   //TEST4: Litery w macierzy, za mało danych
 }
