@@ -1,27 +1,39 @@
 FLAGS = -Wall -pedantic -Wextra
-CCO = cc -c
+MFLAGS = -Wall -pedantic -Wextra -lm
+TFLAGS = -Wall -pedantic -Wextra -DTEST
+CCC = cc -c
+CCO = cc -o
+MBIN = -mkdir bin
+MVBIN = -mv *.o bin/
+DEL = -rm bin/*.o matrix test
 
 matrix: main.o gauss.o backsubst.o mat_io.o
-	$(CC) $^ -o $@
-	mv *.o src/*.gch bin/
+	$(CCO) $@ $^
+	$(MBIN)
+	$(MVBIN)
 
 main.o: src/main.c src/gauss.h src/backsubst.h src/mat_io.h
-	$(CCO) $^ $(FLAGS)
+	$(CCC) $< $(FLAGS)
 
 gauss.o: src/gauss.c src/gauss.h src/mat_io.h
-	$(CCO) $^ $(FLAGS) -lm
+	$(CCC) $< $(MFLAGS)
 
 backsubst.o: src/backsubst.c src/backsubst.h
-	$(CCO) $^ $(FLAGS)
+	$(CCC) $< $(FLAGS)
 
 mat_io.o: src/mat_io.c src/mat_io.h
-	$(CCO) $^ $(FLAGS)
-mat_io_test.o: src/mat_io.c
-	$(CCO) $^ -o $@ -DTEST
+	$(CCC) $< $(FLAGS)
+
 test: test_gauss.o gauss.o backsubst.o mat_io_test.o
-	$(CC) $^ -o $@ -DTEST
-	mv *.o src/*.gch bin/
+	$(CCO) $@ $^
+	$(MBIN)
+	$(MVBIN)
+
+mat_io_test.o: src/mat_io.c src/mat_io.h
+	$(CCC) $< -o $@ $(TFLAGS)	
+
 test_gauss.o: src/test_gauss.c src/gauss.h src/backsubst.h src/mat_io.h
-	$(CCO) $^ $(FLAGS) -lm
+	$(CCC) $< $(MFLAGS)
+
 clean:
-	rm bin/*.o bin/*.gch matrix test 
+	$(DEL)
