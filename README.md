@@ -9,7 +9,7 @@ Do kompilacji programu używamy komendy `make`. Komenda `make clean` usuwa wszel
 # Składnia programu
 
 Program wymaga przestrzegania kolejności argumentów wywołania.\
-`./gauss [plik] [macierz wynikowa] [opcjonalna flaga]`
+`./matrix [plik] [macierz wynikowa] [opcjonalna flaga]`
 
 # Testy
 
