@@ -1,6 +1,6 @@
-FLAGS = -Wall -pedantic -Wextra
-MFLAGS = -Wall -pedantic -Wextra -lm
-TFLAGS = -Wall -pedantic -Wextra -DTEST
+FLAGS = -Wall -pedantic -Wextra -O3
+MFLAGS = -Wall -pedantic -Wextra -lm -O3
+TFLAGS = -Wall -pedantic -Wextra -DTEST -O3
 CCC = cc -c
 CCO = cc -o
 MBIN = -mkdir bin
